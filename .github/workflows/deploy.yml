@@ -1,0 +1,24 @@
+
+name: Deploy to Namecheap Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Upload files to Namecheap server via SFTP (SSH Key)
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.NAMECHEAP_HOST }}
+          username: ${{ secrets.NAMECHEAP_USER }}
+          key: ${{ secrets.NAMECHEAP_AWKMOM }}
+          port: ${{ secrets.NAMECHEAP_PORT }}
+          source: '.'
+          target: ${{ secrets.NAMECHEAP_TARGET }}
