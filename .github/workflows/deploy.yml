@@ -18,7 +18,7 @@ jobs:
         with:
           host: ${{ secrets.NAMECHEAP_HOST }}
           username: ${{ secrets.NAMECHEAP_USER }}
-          key: ${{ secrets.NAMECHEAP_AWKMOM }}
+          key: ${{ secrets.NAMECHEAP_KEY }}
           port: ${{ secrets.NAMECHEAP_PORT }}
           source: '.'
           target: ${{ secrets.NAMECHEAP_TARGET }}
