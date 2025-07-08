@@ -16,12 +16,19 @@ let flashlightOn = false;
 let mouseX = -1000;
 let mouseY = -1000;
 
+// Track mouse and touch movements
 document.addEventListener('mousemove', (e) => {
     if (flashlightOn) {
         mouseX = e.clientX;
         mouseY = e.clientY;
     }
 });
+document.addEventListener('touchmove', (e) => {
+    if (flashlightOn && e.touches.length > 0) {
+        mouseX = e.touches[0].clientX;
+        mouseY = e.touches[0].clientY;
+    }
+}, { passive: true });
 
 // Animate flashlight
 function drawFlashlight() {
@@ -33,7 +40,7 @@ function drawFlashlight() {
 
     if (flashlightOn) {
         // Light gradient
-        const radius = 150;
+        const radius = 300;
         const gradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, radius);
         gradient.addColorStop(0, 'rgba(255,255,255,1)');
         gradient.addColorStop(1, 'rgba(0,0,0,0)');
@@ -51,8 +58,11 @@ function drawFlashlight() {
 
 drawFlashlight();
 
-// Toggle flashlight on click
+// Toggle flashlight on click or touch
 document.getElementById('handle').addEventListener('click', () => {
+    flashlightOn = !flashlightOn;
+});
+document.getElementById('handle').addEventListener('touchstart', () => {
     flashlightOn = !flashlightOn;
 });
 

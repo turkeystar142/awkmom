@@ -13,7 +13,8 @@ html {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: 4;
+    pointer-events: none;
 }
 
 #content {
@@ -42,6 +43,6 @@ p {
     bottom: 20px;
     right: 20px;
     font-size: 2rem;
-    z-index: 3;
+    z-index: 5;
     cursor: grab;
 }
