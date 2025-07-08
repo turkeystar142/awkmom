@@ -58,13 +58,14 @@ function drawFlashlight() {
 
 drawFlashlight();
 
-// Toggle flashlight on click or touch
-document.getElementById('handle').addEventListener('click', () => {
+// Toggle flashlight on click or touch anywhere on the screen
+document.addEventListener('click', (e) => {
+    // Prevent toggling if clicking on a form element or link (optional)
     flashlightOn = !flashlightOn;
 });
-document.getElementById('handle').addEventListener('touchstart', () => {
+document.addEventListener('touchstart', (e) => {
     flashlightOn = !flashlightOn;
-});
+}, { passive: true });
 
 particlesJS("particles-js", {
     particles: {

@@ -37,12 +37,3 @@ p {
     z-index: 2;
     pointer-events: none;
 }
-
-#handle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 2rem;
-    z-index: 5;
-    cursor: grab;
-}
