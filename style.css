@@ -23,6 +23,8 @@ html {
     text-align: center;
     top: 40%;
     transform: translateY(-50%);
+    cursor: default;
+    user-select: none;
 }
 
 h1,
