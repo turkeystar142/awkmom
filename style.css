@@ -1,0 +1,47 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: black;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+#content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+h1,
+p {
+    font-size: 2rem;
+}
+
+#flashlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#handle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 2rem;
+    z-index: 3;
+    cursor: grab;
+}
