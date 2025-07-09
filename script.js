@@ -79,5 +79,8 @@ particlesJS("particles-js", {
     },
     interactivity: {
         events: { onhover: { enable: false } }
-    }
+    },
+    line_linked: {
+        color: { value: "#00ff00" }
+    },
 });
