@@ -72,7 +72,7 @@ document.addEventListener('touchstart', (e) => {
 particlesJS("particles-js", {
     particles: {
         number: { value: 60 },
-        color: { value: "#ffffff" },
+        color: { value: "#00ff00" },
         opacity: { value: 0.05 },
         size: { value: 2 },
         move: { enable: true, speed: 0.5 }

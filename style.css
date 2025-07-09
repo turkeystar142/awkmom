@@ -15,7 +15,6 @@ html {
     height: 100%;
     z-index: 4;
     pointer-events: none;
-    color: #0f0;
 }
 
 #content {
