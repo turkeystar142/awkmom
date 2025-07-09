@@ -62,9 +62,11 @@ drawFlashlight();
 document.addEventListener('click', (e) => {
     // Prevent toggling if clicking on a form element or link (optional)
     flashlightOn = !flashlightOn;
+    document.getElementById('content').style.opacity = flashlightOn ? 1 : 0;
 });
 document.addEventListener('touchstart', (e) => {
     flashlightOn = !flashlightOn;
+    document.getElementById('content').style.opacity = flashlightOn ? 1 : 0;
 }, { passive: true });
 
 particlesJS("particles-js", {
