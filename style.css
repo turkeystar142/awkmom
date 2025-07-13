@@ -5,8 +5,23 @@ html {
     background: black;
     color: white;
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
     font-family: 'Arial', sans-serif;
+}
+
+/* Hide scrollbars for Webkit browsers (Chrome, Safari, Edge) */
+body::-webkit-scrollbar,
+#content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbars for Firefox */
+body,
+#content {
+    /* Firefox */
+    scrollbar-width: none;
+    /* IE and Edge */
+    -ms-overflow-style: none;
 }
 
 #particles-js {
