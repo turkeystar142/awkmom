@@ -25,8 +25,7 @@ html {
     cursor: default;
     user-select: none;
     overflow-y: auto;
-    max-width: 2000px;
-    width: 100%;
+    width: 80%;
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -47,18 +46,34 @@ p {
 .gutter-image {
     position: fixed;
     top: 0;
-    width: 120px;
+    width: 10%;
     height: 100vh;
     z-index: 1;
     display: none;
     opacity: 0;
     transition: opacity 0.3s;
     /* Hide by default, show on desktop via media query */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    animation: float 4s ease-in-out infinite alternate;
+    background: none;
     pointer-events: none;
+    overflow: hidden;
+}
+
+.gutter-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    gap: 12px;
+    justify-content: flex-start;
+    /* Optional: animate the whole column if you want */
+}
+
+.gutter-images img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    animation: float 4s ease-in-out infinite alternate;
 }
 
 #gutter-left {
