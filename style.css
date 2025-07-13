@@ -7,21 +7,18 @@ html {
     height: 100%;
     overflow: auto;
     font-family: 'Arial', sans-serif;
-}
-
-/* Hide scrollbars for Webkit browsers (Chrome, Safari, Edge) */
-body::-webkit-scrollbar,
-#content::-webkit-scrollbar {
-    display: none;
-}
-
-/* Hide scrollbars for Firefox */
-body,
-#content {
+    cursor: url(assets/cursor.png), auto;
     /* Firefox */
     scrollbar-width: none;
     /* IE and Edge */
     -ms-overflow-style: none;
+}
+
+/* Hide scrollbars for Webkit browsers (Chrome, Safari, Edge) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#content::-webkit-scrollbar {
+    display: none;
 }
 
 #particles-js {

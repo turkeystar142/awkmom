@@ -158,7 +158,7 @@ function setRandomGutterImages() {
             // Calculate how many images fit vertically
             const gutterHeight = window.innerHeight;
             const imgHeight = 90 + 12; // image height + gap (adjust to match CSS)
-            const count = Math.ceil(gutterHeight / imgHeight);
+            const count = Math.floor(gutterHeight / imgHeight);
 
             // Helper to get N random images (can repeat)
             function getRandomImages(n) {
