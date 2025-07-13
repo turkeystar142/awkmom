@@ -64,11 +64,34 @@ document.addEventListener('click', (e) => {
     document.getElementById('content').style.opacity = flashlightOn ? 1 : 0;
     flashlightOn ? loadRandomArticle() : document.getElementById('content').innerHTML = '';
 });
+
+let touchStartY = 0;
+let touchStartX = 0;
+
 document.addEventListener('touchstart', (e) => {
-    flashlightOn = !flashlightOn;
-    document.getElementById('content').style.opacity = flashlightOn ? 1 : 0;
-    flashlightOn ? loadRandomArticle() : document.getElementById('content').innerHTML = '';
+    if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    }
 }, { passive: true });
+
+document.addEventListener('touchend', (e) => {
+    if (e.changedTouches.length === 1) {
+        const dx = Math.abs(e.changedTouches[0].clientX - touchStartX);
+        const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+        // Only treat as tap if movement is small (e.g., < 10px)
+        if (dx < 10 && dy < 10) {
+            flashlightOn = !flashlightOn;
+            document.getElementById('content').style.opacity = flashlightOn ? 1 : 0;
+            flashlightOn ? loadRandomArticle() : document.getElementById('content').innerHTML = '';
+        }
+    }
+}, { passive: true });
+// document.addEventListener('touchstart', (e) => {
+//     flashlightOn = !flashlightOn;
+//     document.getElementById('content').style.opacity = flashlightOn ? 1 : 0;
+//     flashlightOn ? loadRandomArticle() : document.getElementById('content').innerHTML = '';
+// }, { passive: true });
 
 // Track mouse and touch movements
 document.addEventListener('mousemove', (e) => {
