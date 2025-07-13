@@ -149,3 +149,25 @@ function loadRandomArticle() {
             document.getElementById('content').innerHTML = `<p>${text.replace(/\n/g, '<br>')}</p>`;
         });
 }
+
+// =======================
+// Image Loading
+// =======================
+
+function setRandomGutterImages() {
+    fetch('list-images.php')
+        .then(res => res.json())
+        .then(images => {
+            if (!images.length) return;
+            // Pick two random images (can be the same)
+            const leftImg = images[Math.floor(Math.random() * images.length)];
+            const rightImg = images[Math.floor(Math.random() * images.length)];
+            document.getElementById('gutter-left').style.backgroundImage = `url('images/${leftImg}')`;
+            document.getElementById('gutter-right').style.backgroundImage = `url('images/${rightImg}')`;
+        });
+}
+
+// Only run on desktop
+if (window.innerWidth >= 900) {
+    setRandomGutterImages();
+}

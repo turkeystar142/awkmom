@@ -43,3 +43,42 @@ p {
     z-index: 2;
     pointer-events: none;
 }
+
+.gutter-image {
+    position: fixed;
+    top: 0;
+    width: 120px;
+    height: 100vh;
+    z-index: 10;
+    display: none;
+    /* Hide by default, show on desktop via media query */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    animation: float 4s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+#gutter-left {
+    left: 0;
+}
+
+#gutter-right {
+    right: 0;
+}
+
+@media (min-width: 900px) {
+    .gutter-image {
+        display: block;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(30px);
+    }
+}
