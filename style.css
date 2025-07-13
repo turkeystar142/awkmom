@@ -5,7 +5,7 @@ html {
     background: black;
     color: white;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     font-family: 'Arial', sans-serif;
     cursor: url(assets/cursor.png), auto;
     /* Firefox */
