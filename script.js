@@ -9,6 +9,25 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
+// Fetch and load articles from the server
+let articles = [];
+
+fetch('list-articles.php')
+    .then(res => res.json())
+    .then(files => {
+        articles = files.map(f => 'articles/' + f);
+    });
+
+function loadRandomArticle() {
+    if (articles.length === 0) return;
+    const randomFile = articles[Math.floor(Math.random() * articles.length)];
+    fetch(randomFile)
+        .then(response => response.text())
+        .then(text => {
+            document.getElementById('content').innerHTML = `<p>${text.replace(/\n/g, '<br>')}</p>`;
+        });
+}
+
 // Flashlight toggle
 let flashlightOn = false;
 
@@ -63,10 +82,12 @@ document.addEventListener('click', (e) => {
     // Prevent toggling if clicking on a form element or link (optional)
     flashlightOn = !flashlightOn;
     document.getElementById('content').style.opacity = flashlightOn ? 1 : 0;
+    flashlightOn ? loadRandomArticle() : document.getElementById('content').innerHTML = '';
 });
 document.addEventListener('touchstart', (e) => {
     flashlightOn = !flashlightOn;
     document.getElementById('content').style.opacity = flashlightOn ? 1 : 0;
+    flashlightOn ? loadRandomArticle() : document.getElementById('content').innerHTML = '';
 }, { passive: true });
 
 particlesJS("particles-js", {
