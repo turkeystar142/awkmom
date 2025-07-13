@@ -5,7 +5,7 @@ html {
     background: black;
     color: white;
     height: 100%;
-    overflow: hidden;
+    overflow: scroll;
     font-family: 'Arial', sans-serif;
 }
 
@@ -21,10 +21,11 @@ html {
     position: relative;
     z-index: 1;
     text-align: center;
-    top: 40%;
-    transform: translateY(-50%);
     cursor: default;
     user-select: none;
+    overflow-y: auto;
+    max-width: 700px;
+    width: 100%;
     opacity: 0;
     transition: opacity 0.3s;
 }
