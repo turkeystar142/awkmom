@@ -57,12 +57,22 @@ drawFlashlight();
 // User Interaction Handlers
 // =======================
 
+function showContentAndGutters(show) {
+    document.getElementById('content').style.opacity = show ? 1 : 0;
+    document.getElementById('gutter-left').style.opacity = show ? 1 : 0;
+    document.getElementById('gutter-right').style.opacity = show ? 1 : 0;
+}
+
 // Toggle flashlight on click or touch anywhere on the screen
 document.addEventListener('click', (e) => {
-    // Prevent toggling if clicking on a form element or link (optional)
     flashlightOn = !flashlightOn;
-    document.getElementById('content').style.opacity = flashlightOn ? 1 : 0;
-    flashlightOn ? loadRandomArticle() : document.getElementById('content').innerHTML = '';
+    showContentAndGutters(flashlightOn);
+    if (flashlightOn) {
+        loadRandomArticle();
+        setRandomGutterImages();
+    } else {
+        document.getElementById('content').innerHTML = '';
+    }
 });
 
 let touchStartY = 0;
@@ -79,19 +89,18 @@ document.addEventListener('touchend', (e) => {
     if (e.changedTouches.length === 1) {
         const dx = Math.abs(e.changedTouches[0].clientX - touchStartX);
         const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
-        // Only treat as tap if movement is small (e.g., < 10px)
         if (dx < 10 && dy < 10) {
             flashlightOn = !flashlightOn;
-            document.getElementById('content').style.opacity = flashlightOn ? 1 : 0;
-            flashlightOn ? loadRandomArticle() : document.getElementById('content').innerHTML = '';
+            showContentAndGutters(flashlightOn);
+            if (flashlightOn) {
+                loadRandomArticle();
+                setRandomGutterImages();
+            } else {
+                document.getElementById('content').innerHTML = '';
+            }
         }
     }
 }, { passive: true });
-// document.addEventListener('touchstart', (e) => {
-//     flashlightOn = !flashlightOn;
-//     document.getElementById('content').style.opacity = flashlightOn ? 1 : 0;
-//     flashlightOn ? loadRandomArticle() : document.getElementById('content').innerHTML = '';
-// }, { passive: true });
 
 // Track mouse and touch movements
 document.addEventListener('mousemove', (e) => {
