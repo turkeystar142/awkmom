@@ -73,6 +73,8 @@ document.addEventListener('click', (e) => {
     } else {
         document.getElementById('content').innerHTML = '';
     }
+    // Play random audio clip on every click (both on and off)
+    playRandomAudio();
 });
 
 let touchStartY = 0;
@@ -123,6 +125,8 @@ document.addEventListener('touchend', (e) => {
             } else {
                 document.getElementById('content').innerHTML = '';
             }
+            // Play random audio clip on every tap (both on and off)
+            playRandomAudio();
         }
         
         // Reset scroll detection
@@ -162,6 +166,39 @@ fetch('list-articles.php')
     .then(files => {
         articles = files.map(f => 'articles/' + f);
     });
+
+// =======================
+// Audio Loading
+// =======================
+
+// Fetch and load audio files from the server
+let audioFiles = [];
+let currentAudio = null;
+
+fetch('list-audio.php')
+    .then(res => res.json())
+    .then(files => {
+        audioFiles = files.map(f => 'audio/' + f);
+    });
+
+function playRandomAudio() {
+    if (audioFiles.length === 0) return;
+    
+    // Stop current audio if playing
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+    
+    // Select random audio file
+    const randomFile = audioFiles[Math.floor(Math.random() * audioFiles.length)];
+    currentAudio = new Audio(randomFile);
+    currentAudio.loop = false; // Don't loop short clips
+    currentAudio.volume = 0.3; // Start at 30% volume
+    currentAudio.play().catch(e => {
+        console.log('Audio play failed:', e);
+    });
+}
 
 function loadRandomArticle() {
     if (articles.length === 0) return;
