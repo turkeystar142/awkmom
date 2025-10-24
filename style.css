@@ -20,13 +20,6 @@ html {
     -webkit-overflow-scrolling: touch;
 }
 
-/* Hide scrollbars for Webkit browsers (Chrome, Safari, Edge) */
-html::-webkit-scrollbar,
-body::-webkit-scrollbar,
-#content::-webkit-scrollbar {
-    display: none;
-}
-
 #particles-js {
     position: absolute;
     width: 100%;
