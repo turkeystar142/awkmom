@@ -21,10 +21,12 @@ html {
 }
 
 #particles-js {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     z-index: 4;
+    top: 0;
+    left: 0;
 }
 
 #content {
@@ -40,9 +42,6 @@ html {
     /* Enable proper touch scrolling for content */
     touch-action: pan-x pan-y;
     -webkit-overflow-scrolling: touch;
-    /* Ensure content takes up enough space to be scrollable */
-    min-height: 150vh;
-    padding: 2rem 0;
 }
 
 h1,
