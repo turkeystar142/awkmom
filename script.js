@@ -77,11 +77,33 @@ document.addEventListener('click', (e) => {
 
 let touchStartY = 0;
 let touchStartX = 0;
+let touchStartTime = 0;
+let isScrolling = false;
 
 document.addEventListener('touchstart', (e) => {
     if (e.touches.length === 1) {
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
+        touchStartTime = Date.now();
+        isScrolling = false;
+    }
+}, { passive: true });
+
+document.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 1) {
+        const dx = Math.abs(e.touches[0].clientX - touchStartX);
+        const dy = Math.abs(e.touches[0].clientY - touchStartY);
+        
+        // If movement is significant, consider it scrolling
+        if (dx > 10 || dy > 10) {
+            isScrolling = true;
+        }
+        
+        // Update flashlight position if it's on
+        if (flashlightOn) {
+            mouseX = e.touches[0].clientX;
+            mouseY = e.touches[0].clientY;
+        }
     }
 }, { passive: true });
 
@@ -89,7 +111,10 @@ document.addEventListener('touchend', (e) => {
     if (e.changedTouches.length === 1) {
         const dx = Math.abs(e.changedTouches[0].clientX - touchStartX);
         const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
-        if (dx < 10 && dy < 10) {
+        const touchDuration = Date.now() - touchStartTime;
+        
+        // Only toggle flashlight if it was a tap (not a scroll) and quick enough
+        if (!isScrolling && dx < 10 && dy < 10 && touchDuration < 500) {
             flashlightOn = !flashlightOn;
             showContentAndGutters(flashlightOn);
             if (flashlightOn) {
@@ -99,6 +124,9 @@ document.addEventListener('touchend', (e) => {
                 document.getElementById('content').innerHTML = '';
             }
         }
+        
+        // Reset scroll detection
+        isScrolling = false;
     }
 }, { passive: true });
 
