@@ -183,8 +183,8 @@ function setRandomGutterImages() {
         .then(images => {
             if (!images.length) return;
 
-            // Calculate how many images fit vertically
-            const gutterHeight = window.innerHeight;
+            // Calculate how many images fit vertically for the full scrollable height
+            const gutterHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
             const imgHeight = 90 + 12; // image height + gap (adjust to match CSS)
             const count = Math.ceil(gutterHeight / imgHeight);
 
