@@ -183,13 +183,27 @@ function setRandomGutterImages() {
         .then(images => {
             if (!images.length) return;
 
-            // Calculate how many images fit vertically based on content height
+            // Calculate how many images fit vertically based on actual text content
             const contentElement = document.getElementById('content');
-            const contentHeight = contentElement ? contentElement.scrollHeight : window.innerHeight;
-            const minHeight = window.innerHeight; // Ensure at least viewport coverage
-            const gutterHeight = Math.max(contentHeight, minHeight);
+            let contentHeight = window.innerHeight; // Default to viewport height
+            
+            if (contentElement) {
+                // Get the height of actual text content, excluding the empty space div
+                const textElements = contentElement.querySelectorAll('h1, p');
+                let textHeight = 0;
+                textElements.forEach(el => {
+                    textHeight += el.offsetHeight;
+                });
+                
+                // Add some padding for better spacing
+                textHeight += 100; // Extra padding
+                
+                // Use the larger of text height or viewport height
+                contentHeight = Math.max(textHeight, window.innerHeight);
+            }
+            
             const imgHeight = 90 + 12; // image height + gap (adjust to match CSS)
-            const count = Math.ceil(gutterHeight / imgHeight);
+            const count = Math.ceil(contentHeight / imgHeight);
 
             // Helper to get N random images (can repeat)
             function getRandomImages(n) {
