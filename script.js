@@ -193,7 +193,7 @@ function playRandomAudio() {
     // Select random audio file
     const randomFile = audioFiles[Math.floor(Math.random() * audioFiles.length)];
     currentAudio = new Audio(randomFile);
-    currentAudio.loop = false; // Don't loop short clips
+    currentAudio.loop = true; // Don't loop short clips
     currentAudio.volume = 0.3; // Start at 30% volume
     currentAudio.play().catch(e => {
         console.log('Audio play failed:', e);
