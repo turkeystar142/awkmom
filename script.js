@@ -199,9 +199,8 @@ function playRandomAudio() {
     });
     currentAudio.addEventListener('ended', () => {
         setTimeout(() => {
-          currentAudio.currentTime = 0;
-          currentAudio.play();
-        }, Math.floor(Math.random() * 5000) + 1000); // 1-5 seconds
+          playRandomAudio();
+        }, Math.floor(Math.random() * 10000) + 1000); // 1-10 seconds
       });
 }
 
