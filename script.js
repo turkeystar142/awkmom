@@ -161,10 +161,9 @@ particlesJS("particles-js", { "particles": { "number": { "value": 150, "density"
 // Fetch and load articles from the server
 let articles = [];
 
-fetch('list-articles.php')
-    .then(res => res.json())
+fetch('articles.json')
     .then(files => {
-        articles = files.map(f => 'articles/' + f);
+        articles = files.map(f => 'articles/');
     });
 
 // =======================
@@ -175,10 +174,9 @@ fetch('list-articles.php')
 let audioFiles = [];
 let currentAudio = null;
 
-fetch('list-audio.php')
-    .then(res => res.json())
+fetch('audio.json')
     .then(files => {
-        audioFiles = files.map(f => 'audio/' + f);
+        audioFiles = files.map(f => 'audio/');
     });
 
 function playRandomAudio() {
@@ -219,8 +217,7 @@ function loadRandomArticle() {
 // =======================
 
 function setRandomGutterImages() {
-    fetch('list-images.php')
-        .then(res => res.json())
+    fetch('images.json')
         .then(images => {
             if (!images.length) return;
 
