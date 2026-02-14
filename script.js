@@ -164,7 +164,7 @@ let articles = [];
 fetch('articles.json')
     .then(res => res.json())
     .then(files => {
-        articles = files.map(f => 'articles/');
+        articles = files.map(f => 'articles/' + f);
     });
 
 // =======================
@@ -178,7 +178,7 @@ let currentAudio = null;
 fetch('audio.json')
     .then(res => res.json())
     .then(files => {
-        audioFiles = files.map(f => 'audio/');
+        audioFiles = files.map(f => 'audio/' + f);
     });
 
 function playRandomAudio() {
@@ -220,8 +220,9 @@ function loadRandomArticle() {
 
 function setRandomGutterImages() {
     fetch('images.json')
-        .then(images => {
-            if (!images.length) return;
+    .then(res => res.json())
+    .then(images => {
+        if (!images.length) return;
 
             // Calculate how many images fit vertically based on actual text content
             const contentElement = document.getElementById('content');
