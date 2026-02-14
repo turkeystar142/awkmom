@@ -162,6 +162,7 @@ particlesJS("particles-js", { "particles": { "number": { "value": 150, "density"
 let articles = [];
 
 fetch('articles.json')
+    .then(res => res.json())
     .then(files => {
         articles = files.map(f => 'articles/');
     });
@@ -175,6 +176,7 @@ let audioFiles = [];
 let currentAudio = null;
 
 fetch('audio.json')
+    .then(res => res.json())
     .then(files => {
         audioFiles = files.map(f => 'audio/');
     });
