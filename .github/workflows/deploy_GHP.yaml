@@ -27,13 +27,13 @@ jobs:
 
       - name: Generate articles.json
         run: |
-          ls 'articles/*.txt' | xargs -n 1 basename | jq -R . | jq -s . > articles.json
+          ls articles/*.txt | xargs -n 1 basename | jq -R . | jq -s . > articles.json
       - name: Generate audio.json
         run: |
-          ls 'audio/*.mp3' | xargs -n 1 basename | jq -R . | jq -s . > audio.json
+          ls audio/*.mp3 | xargs -n 1 basename | jq -R . | jq -s . > audio.json
       - name: Generate images.json
         run: |
-          ls 'images/*.png' | xargs -n 1 basename | jq -R . | jq -s . > images.json
+          ls images/*.png | xargs -n 1 basename | jq -R . | jq -s . > images.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
