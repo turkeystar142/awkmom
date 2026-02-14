@@ -30,7 +30,7 @@ jobs:
           ls articles/*.txt | xargs -n 1 basename | jq -R . | jq -s . > articles.json
       - name: Generate audio.json
         run: |
-          ls audio/*.mp3 | xargs -n 1 basename | jq -R . | jq -s . > audio.json
+          printf '%s\n' audio/*.mp3 | sed 's|audio/||' | jq -R . | jq -s . > audio.json
       - name: Generate images.json
         run: |
           ls images/*.png | xargs -n 1 basename | jq -R . | jq -s . > images.json
